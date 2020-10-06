@@ -39,20 +39,20 @@ public class ApplicationUser implements UserDetails {
         return lastName;
     }
 
-//    public Date getDateOfBirth() {
-//        return dateOfBirth;
-//    }
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
 
     public String getBio() {
         return bio;
     }
 
-    public ApplicationUser(String username, String password, String firstName, String lastName, String bio){
+    public ApplicationUser(String username, String password, String firstName, String lastName, Date dateOfBirth, String bio){
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-//        this.dateOfBirth = dateOfBirth;
+        this.dateOfBirth = dateOfBirth;
         this.bio = bio;
 
 
@@ -103,7 +103,7 @@ public class ApplicationUser implements UserDetails {
                 ", password='" + getPassword() + '\'' +
                 ", firstName='" + getFirstName() + '\'' +
                 ", lastName='" + getLastName() + '\'' +
-//                ", dateOfBirth=" + getDateOfBirth() +
+                ", dateOfBirth=" + getDateOfBirth() +
                 ", bio='" + getBio() + '\'' +
                 '}';
     }

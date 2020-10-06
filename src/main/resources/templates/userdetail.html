@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>This is the user page</title>
+</head>
+<body>
+<h3>This is the user route</h3>
+<h3 th:if="${user}" th:text="${user.id}"></h3>
+<h3 th:unless="${user}" th:text="">That user doesn't exist yet. Invite them.</h3>
+
+
+
+
+
+
+<!--<section th:if="${user}">-->
+<!--    <p th:each="post : ${user.post}" text="${post}"></p>-->
+<!--</section>-->
+
+</body>
+</html>
