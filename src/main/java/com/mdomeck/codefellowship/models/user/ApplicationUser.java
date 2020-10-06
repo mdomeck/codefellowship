@@ -19,21 +19,46 @@ public class ApplicationUser implements UserDetails {
 
     String username;
     String password;
-    String firstName = null;
-    String lastName = null;
-    Date dateOfBirth = null;
-    String bio = null;
+    String firstName;
+    String lastName;
+    Date dateOfBirth;
+    String bio;
 
     public ApplicationUser(){};
 
 
+    public long getId() {
+        return id;
+    }
 
+    public String getFirstName() {
+        return firstName;
+    }
 
-    public ApplicationUser(String username, String password){
+    public String getLastName() {
+        return lastName;
+    }
+
+//    public Date getDateOfBirth() {
+//        return dateOfBirth;
+//    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public ApplicationUser(String username, String password, String firstName, String lastName, String bio){
         this.username = username;
         this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+//        this.dateOfBirth = dateOfBirth;
+        this.bio = bio;
+
 
     }
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -70,5 +95,16 @@ public class ApplicationUser implements UserDetails {
         return true;
     }
 
-
+    @Override
+    public String toString() {
+        return "ApplicationUser{" +
+                "id=" + getId() +
+                ", username='" + getUsername() + '\'' +
+                ", password='" + getPassword() + '\'' +
+                ", firstName='" + getFirstName() + '\'' +
+                ", lastName='" + getLastName() + '\'' +
+//                ", dateOfBirth=" + getDateOfBirth() +
+                ", bio='" + getBio() + '\'' +
+                '}';
+    }
 }
