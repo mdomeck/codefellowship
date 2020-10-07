@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ErrorController {
 
-//    @GetMapping("/error")
-//    public String handleError(HttpServletRequest request, Model m){
-//        System.out.println(request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE));
-//        int status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-//        m.addAttribute("status");
-//
-//        return "error";
-//    }
+    @GetMapping("/error")
+    public String handleError(HttpServletRequest request, Model m){
+        System.out.println(request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE));
+        int status = Integer.parseInt(request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE).toString());
+        m.addAttribute("status", status);
+
+        return "error";
+    }
 
 }
