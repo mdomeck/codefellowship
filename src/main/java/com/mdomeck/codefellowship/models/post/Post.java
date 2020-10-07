@@ -17,13 +17,13 @@ public class Post {
     public ApplicationUser applicationUser;
 
     String body;
-    Timestamp createdAt;
+    Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
     public Post(){};
 
-    public Post(String body, Timestamp createdAt){
+    public Post(String body){
         this.body = body;
-        this.createdAt = createdAt;
+       // this.createdAt = createdAt;
 
     }
 

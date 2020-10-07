@@ -22,8 +22,8 @@ public class PostController {
     PostRepository postRepository;
 
     @PostMapping("/myprofile")
-    public RedirectView makeNewPost(String body, Timestamp createdAt, long id){
-        Post post = new Post(body, createdAt);
+    public RedirectView makeNewPost(String body, long id){
+        Post post = new Post(body);
         ApplicationUser user = applicationUserRepository.getOne(id);
 
         post.applicationUser = user;

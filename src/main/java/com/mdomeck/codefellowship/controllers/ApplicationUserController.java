@@ -35,7 +35,7 @@ public class ApplicationUserController {
         if (user == null) {
             m.addAttribute("userDoesNotExist", true);
         }
-        return "/userdetail";
+        return "userdetail";
     }
 
     @DateTimeFormat(pattern = "MM-dd-yyyy")
