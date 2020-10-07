@@ -3,7 +3,6 @@ package com.mdomeck.codefellowship.models.user;
 import com.mdomeck.codefellowship.models.post.Post;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;

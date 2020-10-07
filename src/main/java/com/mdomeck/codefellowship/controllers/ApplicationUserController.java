@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
-
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.sql.Date;
@@ -64,6 +63,7 @@ public class ApplicationUserController {
     public String showProfile(Model m, Principal principal) {
         ApplicationUser user = applicationUserRepository.findByUsername(principal.getName());
         m.addAttribute("user", user);
+        System.out.println(user.posts.size());
         return "myprofile";
     }
 
