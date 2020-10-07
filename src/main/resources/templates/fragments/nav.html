@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:replace="fragments/nav :: nav"></div>
+
+<h1>We are home</h1>
+
+
+<nav th:fragment="nav">
+    <ul><a href="/"><li>home</li></a></ul>
+    <ul><a href="/login"><li>login</li></a></ul>
+    <ul><a href="/logout"><li>logout</li></a></ul>
+    <p th:if="${user}" th:text="Welcome + ${user.firstName}"></p>
+</nav>
+
+
+
+
+</body>
+</html>

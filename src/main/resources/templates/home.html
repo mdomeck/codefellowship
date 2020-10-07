@@ -5,7 +5,14 @@
     <title>Home route</title>
 </head>
 <body>
-<h3>This is my home route</h3>
+<header>
+<div th:replace="fragments/nav :: nav"></div>
+</header>
+
+
+<h3>Welcome to Codefellowship!</h3>
+
+<h5>Learn to code and connect</h5>
 
 <a href="/signup">Click to signup</a>
 
@@ -15,11 +22,5 @@
 <br>
 
 
-
-<!--<form action="/signup" method="POST">-->
-<!--    <input type="text" name="username">-->
-<!--    <input type="text" name="password">-->
-<!--    <input type="submit">-->
-<!--</form>-->
 </body>
 </html>

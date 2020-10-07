@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>This is the user page</title>
+</head>
+<body>
+
+<header>
+    <div th:replace="fragments/nav :: nav"></div>
+</header>
+
+<h3>This is the user route</h3>
+<h3 th:if="${user}" th:text="${user.id}"></h3>
+<h3 th:unless="${user}" th:text="">That user doesn't exist yet. Invite them.</h3>
+
+
+<form action="/myprofile" method="POST">
+    message<input type="text" name="body">
+    <input type="number" name="id" th:value="${user.id}">
+    <input type="submit">
+
+</form>
+
+<!--<section th:if="${user.id}">-->
+<!--    <p th:each="post : ${user.post}" th:text="${post}"></p>-->
+
+<!--</section>-->
+
+
+
+<!--<p th:if="${user}" th:text="${user.firstName}"></p>-->
+<!--<p th:if="${user}" th:text="${user.lastName}"></p>-->
+<!--<p th:if="${user}" th:text="${user.dateOfBirth}"></p>-->
+<!--<p th:if="${user}" th:text="${user.bio}"></p>-->
+
+
+
+
+</body>
+</html>
