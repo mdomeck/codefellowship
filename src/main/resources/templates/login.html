@@ -5,6 +5,11 @@
     <title>Login</title>
 </head>
 <body>
+
+<header>
+    <div th:replace="fragments/nav :: nav"></div>
+</header>
+
 <h3>Please log in</h3>
 
 <form action="/login" method="POST">

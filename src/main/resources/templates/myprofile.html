@@ -5,6 +5,11 @@
     <title>My Profile</title>
 </head>
 <body>
+
+<header>
+    <div th:replace="fragments/nav :: nav"></div>
+</header>
+
 <h3>Welcome to my profile</h3>
 
 <h3 th:if="${user}" th:text="${user.id}"></h3>

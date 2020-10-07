@@ -5,6 +5,11 @@
     <title>This is the user page</title>
 </head>
 <body>
+
+<header>
+    <div th:replace="fragments/nav :: nav"></div>
+</header>
+
 <h3>This is the user route</h3>
 <h3 th:if="${user}" th:text="${user.id}"></h3>
 <h3 th:unless="${user}" th:text="">That user doesn't exist yet. Invite them.</h3>
