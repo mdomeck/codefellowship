@@ -33,7 +33,7 @@ public class PostController {
         user.posts.add(post);
         applicationUserRepository.save(user);
 
-        return new RedirectView("/myprofile" + user.getId());
+        return new RedirectView("/myprofile");
     }
 
 }

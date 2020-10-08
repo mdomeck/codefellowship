@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Users</title>
+</head>
+<body>
+
+<header>
+    <div th:replace="fragments/nav :: nav"></div>
+</header>
+<a th:each="user: ${ArrayList}" th:href="'/user/' + ${user.id}" th:text="${user.firstName}"></a>
+
+
+</body>
+</html>
