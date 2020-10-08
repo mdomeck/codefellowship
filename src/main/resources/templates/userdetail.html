@@ -21,8 +21,8 @@
 
 
 <form action="/feed" method="POST">
-    <input type="hidden" name="id" th:value="${user.getId()}">
-    <input type="submit" value="'Follow ' + ${user.firstName}">
+    <input type="hidden" name="whoIFollow" th:value="${user.id}">
+    <input type="submit" th:value="'Follow ' + ${user.firstName}">
 
 
 

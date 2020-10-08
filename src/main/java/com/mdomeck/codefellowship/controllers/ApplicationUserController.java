@@ -20,6 +20,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.sql.Date;
+import java.util.ArrayList;
 
 
 @Controller
@@ -39,6 +40,13 @@ public class ApplicationUserController {
             m.addAttribute("userDoesNotExist", true);
         }
         return "userdetail";
+    }
+
+    @GetMapping("/user")
+    public String whoToFollow(Model m){
+        ArrayList<ApplicationUser> eachUser = (ArrayList<ApplicationUser>) applicationUserRepository.findAll();
+        m.addAttribute("ArrayList", eachUser);
+        return "userSearch";
     }
 
     @DateTimeFormat(pattern = "MM-dd-yyyy")
