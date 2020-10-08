@@ -4,10 +4,7 @@ import com.mdomeck.codefellowship.models.post.Post;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class ApplicationUser implements UserDetails {
@@ -22,14 +19,43 @@ public class ApplicationUser implements UserDetails {
     String lastName;
     Date dateOfBirth;
     String bio;
+    public String image = "https://via.placeholder.com/150";
 
     @OneToMany(mappedBy = "applicationUser", cascade = CascadeType.ALL)
     public List<Post> posts = new ArrayList<Post>();
 
+    @ManyToMany(cascade = CascadeType.REMOVE)
+
+    @JoinTable(
+            name="connecting",
+            joinColumns = { @JoinColumn(name="giver")},
+            inverseJoinColumns = {@JoinColumn(name = "receiver")}
+    )
+    public Set<ApplicationUser> whoIFollow = new HashSet<>();
+
+    @ManyToMany(mappedBy = "whoIFollow")
+    public Set<ApplicationUser> whoFollowsMe = new HashSet<>();
+
 
     public ApplicationUser(){};
 
+    public ApplicationUser(String username, String password, String firstName, String lastName, Date dateOfBirth, String bio){
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.bio = bio;
 
+
+    }
+    public Set<ApplicationUser> getWhoIFollow() {
+        return whoIFollow;
+    }
+
+    public Set<ApplicationUser> getWhoFollowsMe() {
+        return whoFollowsMe;
+    }
     public long getId() {
         return id;
     }
@@ -50,16 +76,8 @@ public class ApplicationUser implements UserDetails {
         return bio;
     }
 
-    public ApplicationUser(String username, String password, String firstName, String lastName, Date dateOfBirth, String bio){
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
-        this.bio = bio;
 
 
-    }
 
 
 

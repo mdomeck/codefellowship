@@ -1,5 +1,7 @@
 package com.mdomeck.codefellowship.controllers;
 
+import com.mdomeck.codefellowship.models.post.Post;
+import com.mdomeck.codefellowship.models.post.PostRepository;
 import com.mdomeck.codefellowship.models.user.ApplicationUser;
 import com.mdomeck.codefellowship.models.user.ApplicationUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.view.RedirectView;
+
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.sql.Date;
@@ -59,6 +63,20 @@ public class ApplicationUserController {
         return new ModelAndView("redirect:/login");
     }
 
+    @PostMapping("/feed")
+    public RedirectView feed(Principal principal, long whoIFollow){
+        ApplicationUser whoIFollowUser = applicationUserRepository.getOne(whoIFollow);
+        ApplicationUser myUser = applicationUserRepository.findByUsername(principal.getName());
+
+        whoIFollowUser.whoIFollow.add(myUser);
+        myUser.whoFollowsMe.add(whoIFollowUser);
+
+        applicationUserRepository.save(whoIFollowUser);
+        applicationUserRepository.save(myUser);
+        return new RedirectView("/myprofile");
+    }
+
+
     @GetMapping("/myprofile")
     public String showProfile(Model m, Principal principal) {
         ApplicationUser user = applicationUserRepository.findByUsername(principal.getName());
@@ -66,6 +84,8 @@ public class ApplicationUserController {
         System.out.println(user.posts.size());
         return "myprofile";
     }
+
+
 
     @GetMapping("/signup")
     public String signup() {

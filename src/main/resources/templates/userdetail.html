@@ -11,30 +11,22 @@
 </header>
 
 <h3>This is the user route</h3>
-<h3 th:if="${user}" th:text="${user.id}"></h3>
+<!--<h3 th:if="${user}" th:text="${user.id}"></h3>-->
 <h3 th:unless="${user}" th:text="">That user doesn't exist yet. Invite them.</h3>
+<img th:src="${user.image}">
+<p th:if="${user}" th:text="${user.firstName}"></p>
+<p th:if="${user}" th:text="${user.lastName}"></p>
+<p th:if="${user}" th:text="${user.dateOfBirth}"></p>
+<p th:if="${user}" th:text="${user.bio}"></p>
 
 
-<form action="/myprofile" method="POST">
-    message<input type="text" name="body">
-    <input type="number" name="id" th:value="${user.id}">
-    <input type="submit">
+<form action="/feed" method="POST">
+    <input type="hidden" name="id" th:value="${user.getId()}">
+    <input type="submit" value="'Follow ' + ${user.firstName}">
+
+
 
 </form>
-
-<!--<section th:if="${user.id}">-->
-<!--    <p th:each="post : ${user.post}" th:text="${post}"></p>-->
-
-<!--</section>-->
-
-
-
-<!--<p th:if="${user}" th:text="${user.firstName}"></p>-->
-<!--<p th:if="${user}" th:text="${user.lastName}"></p>-->
-<!--<p th:if="${user}" th:text="${user.dateOfBirth}"></p>-->
-<!--<p th:if="${user}" th:text="${user.bio}"></p>-->
-
-
 
 
 </body>

@@ -5,6 +5,8 @@ import org.springframework.security.core.parameters.P;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Post {
@@ -16,8 +18,11 @@ public class Post {
     @ManyToOne
     public ApplicationUser applicationUser;
 
-    String body;
-    Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+
+
+
+    public String body;
+    public Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
     public Post(){};
 
@@ -27,10 +32,19 @@ public class Post {
 
     }
 
-//    public String toString(){
-//        return String.format(
-//                ""
-//        );
-//    }
+    public long getId() {
+        return id;
+    }
+
+    public ApplicationUser getApplicationUser() {
+        return applicationUser;
+    }
+
+
+
+    public String getBody() {
+        return body;
+    }
+
 
 }
