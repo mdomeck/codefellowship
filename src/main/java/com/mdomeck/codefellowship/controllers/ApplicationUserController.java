@@ -76,8 +76,11 @@ public class ApplicationUserController {
         ApplicationUser whoIFollowUser = applicationUserRepository.getOne(whoIFollow);
         ApplicationUser myUser = applicationUserRepository.findByUsername(principal.getName());
 
-        whoIFollowUser.whoIFollow.add(myUser);
-        myUser.whoFollowsMe.add(whoIFollowUser);
+        myUser.whoIFollow.add(whoIFollowUser);
+        whoIFollowUser.whoFollowsMe.add(myUser);
+
+//        whoIFollowUser.whoIFollow.add(myUser);
+//        myUser.whoFollowsMe.add(whoIFollowUser);
 
         applicationUserRepository.save(whoIFollowUser);
         applicationUserRepository.save(myUser);
