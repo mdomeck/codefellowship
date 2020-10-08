@@ -12,8 +12,8 @@
 
 <h3>Welcome to my profile</h3>
 
-<h3 th:if="${user}" th:text="${user.id}"></h3>
-<h3 th:unless="${user}" th:text="">That user doesn't exist yet. Invite them.</h3>
+<!--<h3 th:if="${user}" th:text="${user.id}"></h3>-->
+<!--<h3 th:unless="${user}" th:text="">That user doesn't exist yet. Invite them.</h3>-->
 <p th:if="${user}" th:text="${user.firstName}"></p>
 <p th:if="${user}" th:text="${user.lastName}"></p>
 <p th:if="${user}" th:text="${user.dateOfBirth}"></p>
