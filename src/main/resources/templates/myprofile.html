@@ -22,6 +22,7 @@
 
 <form action="/myprofile" method="POST">
     message<input type="text" name="body">
+    <input type="hidden" name="firstName" th:value="${user.firstName}">
     <input type="hidden" name="id" th:value="${user.id}">
     <input type="submit">
 
@@ -33,6 +34,10 @@
         <p th:text="${post.body}"></p>
     </section>
 </section>
+
+<form action="/feed" method="GET">
+    <input type="submit" value="Go to Feed">
+</form>
 
 
 

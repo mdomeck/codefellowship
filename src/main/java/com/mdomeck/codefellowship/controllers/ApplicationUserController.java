@@ -43,7 +43,7 @@ public class ApplicationUserController {
     }
 
     @GetMapping("/user")
-    public String whoToFollow(Model m){
+    public String whoToFollow(Model m) {
         ArrayList<ApplicationUser> eachUser = (ArrayList<ApplicationUser>) applicationUserRepository.findAll();
         m.addAttribute("ArrayList", eachUser);
         return "userSearch";
@@ -72,19 +72,38 @@ public class ApplicationUserController {
     }
 
     @PostMapping("/feed")
-    public RedirectView feed(Principal principal, long whoIFollow){
+    public RedirectView feed(Principal principal, long whoIFollow) {
         ApplicationUser whoIFollowUser = applicationUserRepository.getOne(whoIFollow);
         ApplicationUser myUser = applicationUserRepository.findByUsername(principal.getName());
 
         myUser.whoIFollow.add(whoIFollowUser);
         whoIFollowUser.whoFollowsMe.add(myUser);
 
-//        whoIFollowUser.whoIFollow.add(myUser);
-//        myUser.whoFollowsMe.add(whoIFollowUser);
-
         applicationUserRepository.save(whoIFollowUser);
         applicationUserRepository.save(myUser);
         return new RedirectView("/myprofile");
+    }
+
+    @GetMapping("/feed")
+    public String getFeedDetails(Model m, Principal principal) {
+        ApplicationUser user = applicationUserRepository.findByUsername(principal.getName());
+        System.out.println(user.whoIFollow.toString());
+        ArrayList<Long> idOfFollowed = new ArrayList<>();
+        for(int i = 0; i < user.whoIFollow.size(); i++){
+          idOfFollowed.add(user.whoIFollow.get(i).getId());
+        }
+        ArrayList<Post> postsOfFollowed = new ArrayList<Post>();
+        for(int i = 0; i < idOfFollowed.size(); i++) {
+            ApplicationUser temp = applicationUserRepository.getOne(idOfFollowed.get(i));
+            for(int j = 0; j < temp.posts.size(); j++) {
+                postsOfFollowed.add(temp.posts.get(j));
+                System.out.println("This ran" + postsOfFollowed.toString());
+            }
+        }
+
+        m.addAttribute("postCollection", postsOfFollowed);
+
+        return "feed";
     }
 
 
@@ -92,10 +111,9 @@ public class ApplicationUserController {
     public String showProfile(Model m, Principal principal) {
         ApplicationUser user = applicationUserRepository.findByUsername(principal.getName());
         m.addAttribute("user", user);
-        System.out.println(user.posts.size());
+//        System.out.println(user.posts.size());
         return "myprofile";
     }
-
 
 
     @GetMapping("/signup")
