@@ -14,7 +14,8 @@
 <h3>Connecting to who I follow</h3>
 
 <div th:each="post : ${postCollection}">
-    <p th:text="${post.body} + ' From: ' + ${post.firstName}"></p>
+    <p th:text="${post.body} + ' From: ' + ${post.firstName} "></p>
+    <a th:href="'/user/' + ${post.applicationUser.id}" th:text="'Go to ' + ${post.firstName} + '\'s profile'"></a>
 
 </div>
 

@@ -27,21 +27,23 @@
     <input type="hidden" name="firstName" th:value="${user.firstName}">
     <input type="hidden" name="id" th:value="${user.id}">
     <input type="submit">
-
-    <a href="/user">Click to Find Users</a>
-
 </form>
+
+
 <section th:if="${user}">
     <section th:each="post : ${user.posts}">
         <p th:text="${post.body}"></p>
     </section>
 </section>
 
+<br>
+
+    <a href="/user">Click to Find Users</a>
+<br>
+<br>
 <form action="/feed" method="GET">
     <input type="submit" value="Go to Feed">
 </form>
-
-
 
 </body>
 </html>

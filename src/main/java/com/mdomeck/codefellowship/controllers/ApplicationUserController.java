@@ -1,7 +1,6 @@
 package com.mdomeck.codefellowship.controllers;
 
 import com.mdomeck.codefellowship.models.post.Post;
-import com.mdomeck.codefellowship.models.post.PostRepository;
 import com.mdomeck.codefellowship.models.user.ApplicationUser;
 import com.mdomeck.codefellowship.models.user.ApplicationUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.sql.Date;
@@ -100,7 +98,6 @@ public class ApplicationUserController {
                 System.out.println("This ran" + postsOfFollowed.toString());
             }
         }
-
         m.addAttribute("postCollection", postsOfFollowed);
 
         return "feed";
