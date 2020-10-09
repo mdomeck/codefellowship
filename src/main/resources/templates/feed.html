@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feed</title>
+</head>
+<body>
+<header>
+    <div th:replace="fragments/nav :: nav"></div>
+</header>
+
+<h3>Connecting to who I follow</h3>
+
+<div th:each="post : ${postCollection}">
+    <p th:text="${post.body} + ' From: ' + ${post.firstName}"></p>
+
+</div>
+
+</body>
+</html>

@@ -18,16 +18,15 @@ public class Post {
     @ManyToOne
     public ApplicationUser applicationUser;
 
-
-
-
     public String body;
     public Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+    public String firstName;
 
     public Post(){};
 
-    public Post(String body){
+    public Post(String body, String firstName){
         this.body = body;
+        this.firstName = firstName;
        // this.createdAt = createdAt;
 
     }
