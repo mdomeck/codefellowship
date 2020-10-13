@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -16,6 +16,11 @@
         <a class="nav-item" href="/">home</a>
         <a class="nav-item" href="/login">login</a>
         <a class="nav-item" href="/logout">logout</a>
+<!--    </div>-->
+<!--    <div class="nav" th:unless="${principle}">-->
+<!--        <a class="nav-item" href="/">home</a>-->
+<!--        <a class="nav-item" href="/logout">logout</a>-->
+
     </div>
     <p th:if="${user}" th:text="'Welcome ' + ${user.username}"></p>
 </nav>
