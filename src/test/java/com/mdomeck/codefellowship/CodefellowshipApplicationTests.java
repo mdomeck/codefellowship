@@ -1,32 +1,36 @@
 package com.mdomeck.codefellowship;
 
-import com.mdomeck.codefellowship.controllers.ApplicationUserController;
+
+import com.mdomeck.codefellowship.controllers.HomeController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
-@SpringBootTest
-@AutoConfigureMockMvc
-class CodefellowshipApplicationTests {
+	@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+	class CodefellowshipApplicationTests {
 
-	@Autowired
-	private MockMvc mockMvc;
+		@LocalServerPort
+		private int port;
 
-	@Autowired
-	private ApplicationUserController applicationUserController;
+		@Autowired
+		private TestRestTemplate restTemplate;
 
+		@Autowired
+		private HomeController homeController;
+		
+		@Test
+		public void contextLoads(){
+			assertThat(homeController).isNotNull();
+		}
 
-	@Test
-	void contextLoads() {
-	}
-
-//	@Test
-//	public void homePageShouldRenderWithH3AndA(){
-//		this.mockMvc.perform((get("/")))
-//	}
-
+		@Test
+		public void homeShouldReturnLoginLink(){
+			assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/", String.class)).contains("<a href=\"/login\">Click to Login</a>");
+			assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/", String.class)).contains("<a href=\"/signup\">Click to Sign-up</a>");
+		}
 
 }
