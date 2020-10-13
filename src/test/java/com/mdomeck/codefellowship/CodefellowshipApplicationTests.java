@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 		@Autowired
 		private HomeController homeController;
-		
+
 		@Test
 		public void contextLoads(){
 			assertThat(homeController).isNotNull();
